@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Filtra las categorías del bar horizontal de /shop para mostrar
+        SOLO las categorías que pertenecen al sitio web actual (website_id=11 PJMS).
+        Sin este override, Odoo también muestra categorías globales (website_id=False).
+    -->
+    <template id="pjms_filter_shop_categories"
+              inherit_id="website_sale.products"
+              name="PJMS: Filtrar categorías de tienda por sitio web">
+        <xpath expr="//t[@t-if='opt_wsale_categories_top'][@t-call='website_sale.filmstrip_categories']"
+               position="before">
+            <t t-set="categories"
+               t-value="categories.filtered(lambda c: c.website_id.id == request.website.id)"/>
+        </xpath>
+    </template>
+</odoo>

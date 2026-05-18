@@ -141,18 +141,8 @@ def _ensure_category_menus(env, website):
     if existing_cat_menus:
         return
 
-    # Menús base fijos (Home y Colecciones)
-    base_menus = [
-        ('Home', '/pjms', 5),
-        ('Colecciones', '/shop', 10),
-    ]
-    for label, url, seq in base_menus:
-        if not Menu.search([('website_id', '=', website.id), ('url', '=', url)], limit=1):
-            Menu.create({
-                'name': label, 'url': url,
-                'parent_id': top_menu.id,
-                'website_id': website.id, 'sequence': seq,
-            })
+    # No crear menús base fijos extra — los menús nativos de Odoo (Home, Tienda, Contacto)
+    # ya existen en website_menu y se gestionan desde el backend de Website.
 
     # Un ítem por cada categoría padre
     cats = Cat.search([

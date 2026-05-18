@@ -33,6 +33,7 @@
         'views/pages/contacto.xml',
         'views/pages/contactus.xml',
         'views/pages/categoria.xml',
+        'views/pages/shop.xml',
         'views/website_sale_templates.xml',
     ],
     'assets': {
