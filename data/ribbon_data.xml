@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Marca el ribbon "¡Nuevo!" con tipo="nuevo" para que la sección
+         Nuevos Ingresos del sitio PJMS filtre correctamente los productos -->
+    <record id="website_sale.new_ribbon" model="product.ribbon">
+        <field name="tipo">nuevo</field>
+    </record>
+</odoo>

@@ -12,6 +12,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'data/ribbon_data.xml',
         'data/website_data.xml',
         'views/layout/pj_layout.xml',
         'views/layout/pj_header.xml',
