@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="s_pj_sale" name="PJMS Sale Hasta 40%">
-        <t t-set="pj_sale" t-value="request.env['product.template'].sudo().search([('is_published', '=', True), ('website_id', '=', request.website.id), ('website_ribbon_id.tipo', '=', 'en_descuento')], order='create_date desc', limit=4)"/>
+        <t t-set="pj_sale" t-value="request.env['product.template'].sudo().search(['&amp;', ('is_published', '=', True), ('website_ribbon_id.tipo', '=', 'en_descuento'), '|', ('website_id', '=', request.website.id), ('website_id', '=', False)], order='create_date desc', limit=4)"/>
         <t t-set="pj_sale_ribbon" t-value="request.env['product.ribbon'].sudo().search([('tipo', '=', 'en_descuento')], limit=1)"/>
         <t t-set="pj_sale_url" t-value="'/shop?ribbon_id=%s' % pj_sale_ribbon.id if pj_sale_ribbon else '/shop'"/>
         <section class="s_pj_sale" data-snippet="s_pj_sale">

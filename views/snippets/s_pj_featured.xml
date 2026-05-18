@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="s_pj_featured" name="PJMS Productos Destacados">
-        <t t-set="pj_featured" t-value="request.env['product.template'].sudo().search([('is_published', '=', True), ('website_id', '=', request.website.id), ('website_ribbon_id.tipo', '=', 'nuevo')], order='create_date desc', limit=8)"/>
+        <t t-set="pj_featured" t-value="request.env['product.template'].sudo().search(['&amp;', ('is_published', '=', True), ('website_ribbon_id.tipo', '=', 'nuevo'), '|', ('website_id', '=', request.website.id), ('website_id', '=', False)], order='create_date desc', limit=8)"/>
         <t t-set="pj_currency" t-value="request.env['res.currency'].sudo().search([('name','=','CLP')], limit=1) or request.env.company.currency_id"/>
         <section class="s_pj_featured pj-section" data-snippet="s_pj_featured">
             <div class="pj-section-head">
