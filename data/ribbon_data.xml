@@ -5,4 +5,6 @@
     <record id="website_sale.new_ribbon" model="product.ribbon">
         <field name="tipo">nuevo</field>
     </record>
+
+
 </odoo>
