@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Agrega el campo 'Tipo de cinta' al formulario de product.ribbon -->
-    <record id="product_ribbon_form_tipo" model="ir.ui.view">
-        <field name="name">product.ribbon.form.tipo</field>
-        <field name="model">product.ribbon</field>
-        <field name="inherit_id" ref="website_sale.product_ribbon_form_view"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='html']" position="before">
-                <field name="tipo"/>
-            </xpath>
-        </field>
-    </record>
+    <!-- Las opciones PJMS se agregan vía selection_add en el modelo.
+         El campo 'tipo' ya aparece en el formulario gracias a web_taller4. -->
 </odoo>

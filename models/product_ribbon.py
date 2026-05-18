@@ -5,13 +5,16 @@ class ProductRibbon(models.Model):
     _inherit = 'product.ribbon'
 
     tipo = fields.Selection(
-        selection=[
-            ('nuevo',        '¡Nuevo!'),
+        selection_add=[
             ('mas_vendidos', 'Más Vendidos'),
             ('especial',     'Especial'),
             ('en_descuento', 'En Descuento'),
             ('otros',        'Otros'),
         ],
-        string='Tipo de cinta',
-        help='Clasifica la cinta para filtrar productos en secciones del sitio PJMS.',
+        ondelete={
+            'mas_vendidos': 'set null',
+            'especial':     'set null',
+            'en_descuento': 'set null',
+            'otros':        'set null',
+        },
     )
