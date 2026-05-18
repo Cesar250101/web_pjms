@@ -107,7 +107,7 @@ def post_init_hook(cr, registry):
     top_menu = website.menu_id
     for label, url, seq in [
         ('Tienda', '/shop', 10),
-        ('Contacto', '/contacto-pjms', 90),
+        ('Contacto', '/contactus', 90),
     ]:
         if top_menu and not Menu.search([
             ('website_id', '=', website.id),
@@ -195,11 +195,11 @@ def _ensure_category_menus(env, website):
                     'sequence': child.sequence,
                 })
 
-    # Contacto al final
-    if not Menu.search([('website_id', '=', website.id), ('url', '=', '/contacto-pjms')], limit=1):
+    # Contacto al final (apunta a /contactus nativo de Odoo con estilos PJMS)
+    if not Menu.search([('website_id', '=', website.id), ('url', '=', '/contactus')], limit=1):
         Menu.create({
             'name': 'Contacto',
-            'url': '/contacto-pjms',
+            'url': '/contactus',
             'parent_id': top_menu.id,
             'website_id': website.id,
             'sequence': 99,

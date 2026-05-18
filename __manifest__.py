@@ -27,6 +27,7 @@
         'views/snippets/snippets.xml',
         'views/pages/home.xml',
         'views/pages/contacto.xml',
+        'views/pages/contactus.xml',
         'views/pages/categoria.xml',
         'views/website_sale_templates.xml',
     ],
