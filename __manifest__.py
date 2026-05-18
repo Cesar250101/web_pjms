@@ -9,6 +9,7 @@
     'depends': [
         'website',
         'website_sale',
+        'web_taller4',
     ],
     'data': [
         'security/ir.model.access.csv',
