@@ -1,0 +1,91 @@
+// PJMS Sale Band (banda cranberry con grid de productos)
+.pj-sale-band {
+    background: var(--pj-accent);
+    color: #fff;
+    margin: 96px 0 0;
+}
+
+.pj-sale-inner {
+    max-width: var(--pj-container);
+    margin: 0 auto;
+    padding: 96px 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+
+    @media (max-width: 1100px) { grid-template-columns: 1fr; }
+    @media (max-width: 700px) { padding: 64px 16px; }
+}
+
+.pj-sale-band .pj-eyebrow { color: #fff !important; }
+
+.pj-sale-title {
+    font-family: var(--pj-font-display);
+    font-size: clamp(48px, 5vw, 88px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin: 12px 0 18px;
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: #fff;
+
+    em {
+        font-family: var(--pj-font-script);
+        font-size: 0.6em;
+        letter-spacing: 0;
+        text-transform: none;
+        display: inline-block;
+        opacity: 0.92;
+        font-style: normal;
+    }
+}
+
+.pj-sale-band > .pj-sale-inner > div > p {
+    font-size: 16px;
+    opacity: 0.85;
+    max-width: 360px;
+    line-height: 1.6;
+    margin: 0 0 28px;
+}
+
+.pj-sale-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    transform: rotate(-2deg);
+}
+
+.pj-sale-tile {
+    aspect-ratio: 3/4;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08);
+
+    &--1 { background: rgba(255,255,255,0.12); }
+    &--2 { background: rgba(255,255,255,0.06); }
+    &--3 { background: rgba(255,255,255,0.08); }
+    &--4 { background: rgba(255,255,255,0.15); }
+}
+
+.pj-btn-ghost-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    font-family: var(--pj-font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.6);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+        background: #fff;
+        color: var(--pj-accent);
+    }
+}

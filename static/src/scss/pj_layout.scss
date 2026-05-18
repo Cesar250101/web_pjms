@@ -1,0 +1,775 @@
+// PJMS — Layout global basado en el diseño real PJMS × Oz Cranberry
+
+// Ocultar header PJMS propio (pj-header) — usamos el header nativo de Odoo estilizado
+.pj-body .pj-header { display: none !important; }
+
+// ============== HEADER NATIVO ODOO CON ESTILO PJMS ==============
+.pj-body {
+    // Reset completo del header nativo
+    #top.pj-odoo-header {
+        background: #fff !important;
+        border-bottom: 1px solid var(--pj-line) !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+
+        // Ocultar logo original de Odoo (pero NO el wordmark PJMS)
+        .navbar-brand:not(.pj-wordmark),
+        .o_logo_nav { display: none !important; }
+
+        // Wordmark PJMS en navbar — posicionado a la izquierda
+        .pj-wordmark.navbar-brand {
+            display: flex !important;
+            flex-direction: column;
+            align-items: flex-start;
+            text-decoration: none;
+            padding: 8px 0 !important;
+            margin-right: 32px;
+            flex-shrink: 0;
+            order: -1;
+            position: static !important;
+            left: auto !important;
+            transform: none !important;
+
+            &::before {
+                content: 'PJMS';
+                font-family: var(--pj-font-display);
+                font-size: 26px;
+                letter-spacing: 0.3em;
+                color: var(--pj-ink);
+                font-weight: 400;
+                line-height: 1;
+                padding-left: 0.3em;
+            }
+
+            .pj-wordmark-sub {
+                font-family: var(--pj-font-script);
+                font-size: 11px;
+                color: var(--pj-ink-3);
+                letter-spacing: 0.02em;
+                line-height: 1.2;
+                display: block;
+            }
+        }
+
+        // Ocultar botón "Contáctenos" global de Odoo en el header
+        .o_wsale_header_cta,
+        a.btn_cta { display: none !important; }
+
+        // Navbar base — fila única: logo izq | menú centro | acciones der
+        .navbar {
+            padding: 0 !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            min-height: 64px;
+        }
+
+        // Íconos adicionales (wishlist)
+        .pj-native-actions {
+            position: absolute;
+            right: 120px;
+            top: 18px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        // Menú de navegación (ítems del menu nativo)
+        #top_menu_container {
+            justify-content: flex-start !important;
+            padding: 0 32px !important;
+            align-items: center !important;
+        }
+
+        .navbar-nav {
+            gap: 0 !important;
+            flex-direction: row !important;
+            justify-content: flex-start;
+            flex-grow: 1;
+        }
+
+        // El collapse debe ser visible en desktop
+        #top_menu_collapse {
+            display: flex !important;
+            flex-grow: 1;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+
+            > .nav-link, > a.nav-link {
+                font-size: 11px !important;
+                letter-spacing: 0.12em !important;
+                text-transform: uppercase !important;
+                color: var(--pj-ink) !important;
+                font-family: var(--pj-font-body) !important;
+                font-weight: 400 !important;
+                padding: 14px 10px !important;
+                text-decoration: none !important;
+                position: relative;
+                transition: color 0.2s;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    inset: auto 10px -1px;
+                    height: 1px;
+                    background: var(--pj-ink);
+                    transform: scaleX(0);
+                    transform-origin: center;
+                    transition: transform 0.2s;
+                }
+
+                &:hover, &.active {
+                    color: var(--pj-ink) !important;
+                    background: transparent !important;
+                    &::after { transform: scaleX(1); }
+                }
+            }
+        }
+
+        // Dropdown del menú nativo
+        .dropdown-menu {
+            border: 1px solid var(--pj-line) !important;
+            border-radius: 0 !important;
+            box-shadow: 0 8px 24px rgba(47,47,47,0.08) !important;
+            padding: 8px 0 !important;
+            min-width: 200px;
+
+            .dropdown-item {
+                font-size: 12px !important;
+                letter-spacing: 0.1em !important;
+                text-transform: uppercase !important;
+                color: var(--pj-ink) !important;
+                font-family: var(--pj-font-body) !important;
+                padding: 10px 20px !important;
+
+                &:hover, &:focus {
+                    background: var(--pj-surface-warm) !important;
+                    color: var(--pj-accent) !important;
+                }
+            }
+        }
+
+        // Carrito en header nativo
+        .o_wsale_my_cart {
+            background: transparent !important;
+            color: var(--pj-ink) !important;
+            padding: 8px 12px !important;
+            font-size: 13px !important;
+            letter-spacing: 0.04em !important;
+            font-family: var(--pj-font-body) !important;
+            border-radius: 0 !important;
+            margin-left: 4px;
+            border: 1px solid var(--pj-border) !important;
+
+            &:hover {
+                background: var(--pj-accent) !important;
+                color: #fff !important;
+                border-color: var(--pj-accent) !important;
+            }
+
+            .badge, .my_cart_quantity {
+                background: var(--pj-accent) !important;
+                color: #fff !important;
+                border-radius: 999px !important;
+                font-size: 10px !important;
+                padding: 2px 5px !important;
+            }
+        }
+
+        // Mi cuenta
+        .o_user_account, [href*="/my"] {
+            font-size: 12px !important;
+            letter-spacing: 0.1em !important;
+            text-transform: uppercase !important;
+            color: var(--pj-ink) !important;
+            font-family: var(--pj-font-body) !important;
+        }
+    }
+}
+
+.pj-site {
+    font-family: var(--pj-font-body);
+    font-size: var(--pj-fs-base);
+    color: var(--pj-ink);
+    background: var(--pj-surface);
+    line-height: var(--pj-lh-normal);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+// ============== MARQUEE (barra de anuncios) ==============
+.pj-marquee {
+    background: var(--pj-ink);
+    color: #fff;
+    overflow: hidden;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.pj-marquee-track {
+    display: flex;
+    animation: pj-marquee-scroll 40s linear infinite;
+    white-space: nowrap;
+    padding: 10px 0;
+    width: max-content;
+    gap: 0;
+}
+
+.pj-marquee-item {
+    padding: 0 8px;
+    &::before { content: '+'; margin-right: 8px; color: var(--pj-accent); }
+}
+
+@keyframes pj-marquee-scroll {
+    to { transform: translateX(-50%); }
+}
+
+// ============== HEADER MAIN ==============
+.pj-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid var(--pj-line);
+    transition: box-shadow var(--pj-duration);
+
+    &.is-scrolled { box-shadow: 0 1px 6px rgba(0,0,0,0.05); }
+}
+
+.pj-header-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 18px 32px;
+    max-width: var(--pj-container);
+    margin: 0 auto;
+    gap: 24px;
+
+    @media (max-width: 700px) {
+        grid-template-columns: auto 1fr auto;
+        padding: 12px 16px;
+    }
+}
+
+.pj-header-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pj-header-right {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    justify-self: end;
+}
+
+// Link meta (Mi cuenta)
+.pj-link-meta {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--pj-ink-2);
+    text-decoration: none;
+    transition: color var(--pj-duration);
+
+    &:hover { color: var(--pj-accent); }
+
+    @media (max-width: 700px) { display: none; }
+}
+
+// Icon buttons
+.pj-iconbtn {
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    color: var(--pj-ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--pj-duration-fast);
+
+    &:hover { background: var(--pj-surface-soft); }
+}
+
+// Wordmark centrado — pieza icónica
+.pj-wordmark {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    text-decoration: none;
+
+    &::before {
+        content: 'PJMS';
+        font-family: var(--pj-font-display);
+        font-size: 42px;
+        letter-spacing: 0.35em;
+        color: var(--pj-ink);
+        font-weight: 400;
+        line-height: 1;
+        padding-left: 0.35em; // compensa el letter-spacing ópticamente
+        display: block;
+
+        @media (max-width: 700px) { font-size: 28px; }
+    }
+}
+
+.pj-wordmark-sub {
+    font-family: var(--pj-font-script);
+    font-size: 16px;
+    color: var(--pj-ink-3);
+    letter-spacing: 0.02em;
+    line-height: 1;
+
+    @media (max-width: 700px) { font-size: 12px; }
+}
+
+// Cart button (esquina superior derecha)
+.pj-cart-btn {
+    background: var(--pj-ink);
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--pj-font-body);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--pj-duration-fast);
+
+    &:hover { background: var(--pj-accent); }
+}
+
+.pj-cart-count {
+    background: #fff;
+    color: var(--pj-ink);
+    border-radius: 999px;
+    font-size: 11px;
+    padding: 1px 7px;
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+}
+
+// ============== NAVIGATION ==============
+.pj-nav {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    padding: 14px 32px;
+    border-top: 1px solid var(--pj-line-soft);
+    background: #fff;
+
+    @media (max-width: 700px) { display: none; }
+}
+
+.pj-nav-link {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pj-ink);
+    text-decoration: none;
+    position: relative;
+    padding: 4px 0;
+    transition: color var(--pj-duration);
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: auto 0 -4px;
+        height: 1px;
+        background: var(--pj-ink);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform var(--pj-duration);
+    }
+
+    &:hover::after, &.is-active::after { transform: scaleX(1); }
+
+    &.is-accent {
+        color: var(--pj-accent);
+        font-weight: 700;
+        &::after { background: var(--pj-accent); }
+    }
+}
+
+// ============== NAV ITEM CON DROPDOWN ==============
+.pj-nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    &.has-dropdown:hover .pj-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+}
+
+.pj-dropdown {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    background: #fff;
+    border: 1px solid var(--pj-line);
+    min-width: 200px;
+    padding: 8px 0;
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    box-shadow: 0 8px 24px rgba(47,47,47,0.08);
+}
+
+.pj-dropdown-item {
+    display: block;
+    padding: 10px 20px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pj-ink);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+
+    &:hover { background: var(--pj-surface-warm); color: var(--pj-accent); }
+}
+
+// ============== PÁGINA DE CATEGORÍA ==============
+.pj-category-main { min-height: 60vh; }
+
+.pj-cat-hero {
+    position: relative;
+    height: 340px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(135deg, var(--pj-brand-blush) 0%, var(--pj-brand-mist) 100%);
+
+    @media (max-width: 700px) { height: 220px; }
+}
+
+.pj-cat-hero-img {
+    position: absolute;
+    inset: 0;
+
+    img { width: 100%; height: 100%; object-fit: cover; }
+}
+
+.pj-cat-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(47,47,47,0.55) 0%, transparent 60%);
+}
+
+.pj-cat-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px 64px;
+
+    @media (max-width: 700px) { padding: 24px; }
+}
+
+.pj-cat-title {
+    font-family: var(--pj-font-display);
+    font-size: clamp(40px, 6vw, 88px);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 8px 0 0;
+    line-height: 1;
+}
+
+.pj-cat-body {
+    max-width: var(--pj-container);
+    margin: 0 auto;
+    padding: 48px 32px 96px;
+
+    @media (max-width: 700px) { padding: 32px 16px 64px; }
+}
+
+.pj-cat-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 48px;
+}
+
+.pj-filter-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px;
+    border: 1px solid var(--pj-line);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pj-ink);
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+
+    &:hover, &.is-active {
+        background: var(--pj-ink);
+        border-color: var(--pj-ink);
+        color: #fff;
+    }
+}
+
+.pj-cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+
+    @media (max-width: 1100px) { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 700px)  { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+
+.pj-cat-empty {
+    text-align: center;
+    padding: 96px 32px;
+
+    p { color: var(--pj-ink-2); margin-bottom: 24px; }
+}
+
+// ============== FOOTER ==============
+.pj-body {
+    #footer, .o_footer {
+        background: var(--pj-ink) !important;
+        color: rgba(255,255,255,0.78) !important;
+        font-family: var(--pj-font-body);
+        padding: 0;
+        border-top: none !important;
+
+        .container {
+            max-width: var(--pj-container);
+            padding: 96px 32px 24px;
+
+            @media (max-width: 700px) { padding: 64px 16px 24px; }
+        }
+
+        p, span, li, address, small {
+            font-family: var(--pj-font-body);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        // Masthead del footer
+        .pj-footer-mast {
+            text-align: center;
+            margin-bottom: 64px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .pj-footer-word {
+            font-family: var(--pj-font-display) !important;
+            font-size: clamp(72px, 10vw, 160px) !important;
+            letter-spacing: 0.32em !important;
+            padding-left: 0.32em;
+            color: #fff !important;
+            line-height: 0.85 !important;
+            display: block;
+        }
+
+        .pj-footer-tag {
+            font-family: var(--pj-font-script) !important;
+            font-size: 28px !important;
+            color: var(--pj-accent) !important;
+            margin-top: 4px;
+            display: block;
+        }
+
+        h5 {
+            font-family: var(--pj-font-body) !important;
+            font-size: 11px !important;
+            letter-spacing: 0.22em !important;
+            text-transform: uppercase !important;
+            color: #fff !important;
+            font-weight: 700 !important;
+            margin: 0 0 18px !important;
+        }
+
+        ul.list-unstyled {
+            padding: 0; margin: 0;
+            li { margin-bottom: 6px; }
+        }
+
+        a {
+            color: rgba(255,255,255,0.78) !important;
+            text-decoration: none !important;
+            font: 400 13px / 1.7 var(--pj-font-body);
+            transition: color var(--pj-duration);
+            &:hover { color: var(--pj-accent) !important; }
+        }
+
+        i.fa { color: rgba(255,255,255,0.55); }
+
+        .pj-footer-row {
+            max-width: var(--pj-container);
+            margin: 0 auto;
+        }
+
+        .pj-footer-brand-col {
+            p {
+                color: rgba(255,255,255,0.78);
+                font-size: 13px;
+                line-height: 1.7;
+                max-width: 320px;
+                margin-bottom: 16px;
+            }
+        }
+
+        .pj-footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            font-size: 11px !important;
+            color: rgba(255,255,255,0.5) !important;
+        }
+
+        .s_social_media {
+            margin-top: 14px;
+
+            a {
+                display: inline-flex !important;
+                align-items: center;
+                justify-content: center;
+                width: 38px;
+                height: 38px;
+                margin: 0 8px 8px 0;
+
+                i.fa {
+                    width: 100%;
+                    height: 100%;
+                    display: inline-flex !important;
+                    align-items: center;
+                    justify-content: center;
+                    background: transparent !important;
+                    border: 1px solid rgba(255,255,255,0.2) !important;
+                    border-radius: 50% !important;
+                    color: rgba(255,255,255,0.78) !important;
+                    font-size: 15px;
+                    box-shadow: none !important;
+                    transition: all var(--pj-duration);
+                }
+
+                &:hover i.fa {
+                    background: var(--pj-accent) !important;
+                    border-color: var(--pj-accent) !important;
+                    color: #fff !important;
+                }
+            }
+        }
+    }
+
+    .o_footer_copyright {
+        background: var(--pj-ink) !important;
+        border-top: 1px solid rgba(255,255,255,0.12) !important;
+
+        .container, .o_footer_copyright_name, p, span, a {
+            color: rgba(255,255,255,0.5) !important;
+            font: 400 11px / 1.5 var(--pj-font-body);
+            letter-spacing: 0.08em;
+        }
+        a:hover { color: var(--pj-accent) !important; }
+    }
+}
+
+// ============== FOOTER PJMS (nuevo markup directo) ==============
+.pj-footer {
+    background: var(--pj-ink);
+    color: rgba(255,255,255,0.78);
+    font-family: var(--pj-font-body);
+    padding: 0;
+}
+
+.pj-footer-masthead {
+    text-align: center;
+    padding: 96px 32px 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.pj-footer-wordmark {
+    font-family: var(--pj-font-display);
+    font-size: clamp(72px, 10vw, 160px);
+    letter-spacing: 0.32em;
+    padding-left: 0.32em;
+    color: #fff;
+    line-height: 0.85;
+    display: block;
+}
+
+.pj-footer-tagline {
+    font-family: var(--pj-font-script);
+    font-size: 28px;
+    color: var(--pj-accent);
+    margin-top: 4px;
+    display: block;
+}
+
+.pj-footer-grid {
+    max-width: var(--pj-container);
+    margin: 0 auto;
+    padding: 64px 32px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+
+    @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 500px) { grid-template-columns: 1fr; }
+}
+
+.pj-footer-heading {
+    font-family: var(--pj-font-body);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 700;
+    margin: 0 0 18px;
+}
+
+.pj-footer-col {
+    ul {
+        list-style: none;
+        padding: 0; margin: 0;
+        li { margin-bottom: 6px; }
+    }
+
+    a {
+        color: rgba(255,255,255,0.78);
+        text-decoration: none;
+        font: 400 13px / 1.7 var(--pj-font-body);
+        transition: color var(--pj-duration);
+        &:hover { color: var(--pj-accent); }
+    }
+
+    p {
+        font: 400 13px / 1.7 var(--pj-font-body);
+        color: rgba(255,255,255,0.78);
+        margin: 0 0 8px;
+    }
+}
+
+.pj-footer-bottom {
+    text-align: center;
+    padding: 24px 32px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.08em;
+    font-family: var(--pj-font-body);
+}

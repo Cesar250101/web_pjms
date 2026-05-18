@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Registra los snippets PJMS en el editor de Odoo -->
+    <template id="snippets_pjms" inherit_id="website.snippets" name="PJMS Snippets">
+        <xpath expr="//div[@id='snippet_structure']" position="before">
+            <div id="snippet_pjms" class="o_panel">
+                <div class="o_panel_header">PJMS</div>
+                <div class="o_panel_body">
+                    <t t-snippet="web_pjms.s_pj_hero" string="Hero PJMS">
+                        <keywords>hero, banner, portada, pjms</keywords>
+                    </t>
+                    <t t-snippet="web_pjms.s_pj_trust_bar" string="Trust Bar">
+                        <keywords>trust, envio, garantia, seguridad</keywords>
+                    </t>
+                    <t t-snippet="web_pjms.s_pj_featured" string="Productos Destacados">
+                        <keywords>productos, destacados, featured</keywords>
+                    </t>
+                    <t t-snippet="web_pjms.s_pj_categories" string="Categorías">
+                        <keywords>categorias, grid, productos</keywords>
+                    </t>
+                    <t t-snippet="web_pjms.s_pj_promo_banner" string="Banner Promocional">
+                        <keywords>promo, oferta, banner, descuento</keywords>
+                    </t>
+                    <t t-snippet="web_pjms.s_pj_bestsellers" string="Más Vendidos">
+                        <keywords>bestsellers, mas vendidos, top</keywords>
+                    </t>
+                    <t t-snippet="web_pjms.s_pj_brands" string="Marcas">
+                        <keywords>marcas, brands, logos</keywords>
+                    </t>
+                    <t t-snippet="web_pjms.s_pj_newsletter" string="Newsletter">
+                        <keywords>newsletter, suscripcion, email</keywords>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

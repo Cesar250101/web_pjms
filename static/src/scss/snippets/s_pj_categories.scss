@@ -1,0 +1,68 @@
+// PJMS Colecciones — carrusel de 8 círculos (brand/collection strip)
+.pj-brand-strip {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 16px;
+
+    @media (max-width: 1100px) { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 700px) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.pj-brand-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 8px;
+    text-decoration: none;
+    color: var(--pj-ink);
+    transition: transform var(--pj-duration);
+
+    &:hover { transform: translateY(-2px); }
+}
+
+.pj-brand-tile-img {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid var(--pj-line);
+    position: relative;
+    overflow: hidden;
+    transition: border-color var(--pj-duration);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 999px;
+    }
+
+    .pj-brand-tile:hover & { border-color: var(--pj-accent); }
+}
+
+.pj-brand-tile-glyph {
+    font-family: var(--pj-font-display);
+    font-size: clamp(24px, 3vw, 48px);
+    color: var(--pj-ink);
+    letter-spacing: 0.04em;
+}
+
+.pj-brand-tile-name {
+    font-family: var(--pj-font-body);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--pj-ink);
+}
+
+.pj-brand-tile-sub {
+    font-family: var(--pj-font-body);
+    font-size: 11px;
+    color: var(--pj-ink-3);
+    font-style: italic;
+}

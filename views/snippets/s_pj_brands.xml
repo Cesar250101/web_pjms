@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sale band: cranberry background, bold editorial text + mini-grid -->
+    <template id="s_pj_brands" name="PJMS Sale Band">
+        <section class="s_pj_brands pj-sale-band" data-snippet="s_pj_brands">
+            <div class="pj-sale-inner">
+                <div class="pj-sale-copy">
+                    <span class="pj-sale-label">Sale</span>
+                    <h2 class="pj-sale-title">Hasta<br/><em>40%</em></h2>
+                    <p class="pj-sale-sub">En productos seleccionados de la temporada.</p>
+                    <a href="/shop?order=price_asc" class="pj-btn pj-btn-ghost-light">Ver ofertas</a>
+                </div>
+                <div class="pj-sale-grid">
+                    <div class="pj-sale-tile pj-sale-tile--1"/>
+                    <div class="pj-sale-tile pj-sale-tile--2"/>
+                    <div class="pj-sale-tile pj-sale-tile--3"/>
+                    <div class="pj-sale-tile pj-sale-tile--4"/>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

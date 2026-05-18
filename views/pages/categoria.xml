@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Página genérica de categoría PJMS.
+        Muestra subcategorías + productos de la categoría padre seleccionada.
+        URL: /coleccion/<slug-categoria>
+        Renderizada por el controlador pjms.category_page
+    -->
+    <template id="pj_category_page" name="PJMS — Página de Categoría">
+        <t t-call="website.layout">
+            <div id="wrap" class="pj-site">
+                <t t-call="web_pjms.pj_header"/>
+                <main class="pj-category-main">
+
+                    <!-- Hero de categoría -->
+                    <div class="pj-cat-hero" t-if="category">
+                        <div class="pj-cat-hero-img" t-if="category.image_1920">
+                            <img t-att-src="'/web/image/product.public.category/%s/image_1920' % category.id"
+                                 t-att-alt="category.name" loading="lazy"/>
+                            <div class="pj-cat-hero-overlay"/>
+                        </div>
+                        <div class="pj-cat-hero-content">
+                            <span class="pj-eyebrow is-accent">Colección</span>
+                            <h1 class="pj-cat-title" t-esc="category.name"/>
+                        </div>
+                    </div>
+
+                    <div class="pj-cat-body">
+
+                        <!-- Subcategorías como filtros -->
+                        <div class="pj-cat-filters" t-if="subcategories">
+                            <a href="#" t-att-data-cat="category.id" class="pj-filter-pill is-active">
+                                Todos
+                            </a>
+                            <t t-foreach="subcategories" t-as="sub">
+                                <a class="pj-filter-pill"
+                                   t-att-href="'/shop?category=%s' % sub.id"
+                                   t-esc="sub.name"/>
+                            </t>
+                        </div>
+
+                        <!-- Grid de productos -->
+                        <div class="pj-cat-grid" t-if="products">
+                            <t t-foreach="products" t-as="prod">
+                                <a class="pj-card" t-att-href="'/shop/product/%s' % slug(prod)">
+                                    <div class="pj-card-image">
+                                        <img t-att-src="'/web/image/product.template/%s/image_512' % prod.id"
+                                             t-att-alt="prod.name" loading="lazy"/>
+                                        <button class="pj-card-quick">Ver Producto</button>
+                                    </div>
+                                    <div class="pj-card-meta">
+                                        <span class="pj-card-brand">PJMS</span>
+                                        <h4 class="pj-card-title" t-esc="prod.name"/>
+                                        <div class="pj-card-price">
+                                            <span t-esc="prod.list_price"
+                                                  t-options="{'widget':'monetary','display_currency':pj_currency}"/>
+                                        </div>
+                                    </div>
+                                </a>
+                            </t>
+                        </div>
+
+                        <!-- Sin productos -->
+                        <div class="pj-cat-empty" t-if="not products">
+                            <p>No hay productos disponibles en esta colección.</p>
+                            <a href="/shop" class="pj-btn pj-btn-primary">Ver toda la tienda</a>
+                        </div>
+
+                    </div>
+                </main>
+            </div>
+        </t>
+    </template>
+</odoo>

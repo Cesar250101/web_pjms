@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Newsletter: warm cream surface, centered, Italiana title + Sacramento em -->
+    <template id="s_pj_newsletter" name="PJMS Newsletter">
+        <section class="s_pj_newsletter" data-snippet="s_pj_newsletter">
+            <div class="pj-nl-inner">
+                <span class="pj-eyebrow is-accent">Mantente al día</span>
+                <h2 class="pj-nl-title">Únete a la<br/><em>comunidad PJMS</em></h2>
+                <p class="pj-nl-sub">Novedades, lanzamientos y acceso anticipado a colecciones exclusivas.</p>
+                <form action="/website/form/" method="post" class="pj-nl-form">
+                    <input type="hidden" name="form_id" value="newsletter"/>
+                    <div class="pj-nl-row">
+                        <input type="email" name="email" placeholder="tu@correo.cl" required="required" class="pj-nl-input"/>
+                        <button type="submit" class="pj-btn pj-btn-primary">Suscribirme</button>
+                    </div>
+                    <p class="pj-nl-fine">Sin spam. Puedes darte de baja cuando quieras.</p>
+                </form>
+            </div>
+        </section>
+    </template>
+</odoo>

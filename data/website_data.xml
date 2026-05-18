@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="website_pjms" model="website">
+        <field name="name">PJMS</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="user_id" ref="base.public_user"/>
+        <field name="default_lang_id" ref="base.lang_es"/>
+    </record>
+</odoo>

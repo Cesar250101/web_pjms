@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_pj_featured" name="PJMS Productos Destacados">
+        <t t-set="pj_featured" t-value="request.env['product.template'].sudo().search([('is_published', '=', True), ('website_id', '=', request.website.id), ('website_ribbon_id.tipo', '=', 'nuevo')], order='create_date desc', limit=8)"/>
+        <t t-set="pj_currency" t-value="request.env['res.currency'].sudo().search([('name','=','CLP')], limit=1) or request.env.company.currency_id"/>
+        <section class="s_pj_featured pj-section" data-snippet="s_pj_featured">
+            <div class="pj-section-head">
+                <span class="pj-eyebrow is-accent">Lo Mejor de PJMS</span>
+                <h2 class="pj-section-title">Nuevos <em>ingresos</em></h2>
+                <a href="/shop" class="pj-section-link">Ver todos los productos</a>
+            </div>
+            <div class="pj-grid">
+                <t t-foreach="pj_featured" t-as="prod">
+                    <a class="pj-card" t-att-href="'/shop/product/%s' % slug(prod)">
+                        <div class="pj-card-image">
+                            <img t-att-src="'/web/image/product.template/%s/image_512' % prod.id"
+                                 t-att-alt="prod.name" loading="lazy"/>
+                            <button class="pj-card-quick is-visible">Ver Producto</button>
+                        </div>
+                        <div class="pj-card-meta">
+                            <span class="pj-card-brand">PJMS</span>
+                            <h4 class="pj-card-title" t-esc="prod.name"/>
+                            <div class="pj-card-price">
+                                <span t-esc="prod.list_price"
+                                      t-options="{'widget':'monetary','display_currency':pj_currency}"/>
+                            </div>
+                        </div>
+                    </a>
+                </t>
+            </div>
+        </section>
+    </template>
+</odoo>

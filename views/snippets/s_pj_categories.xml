@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Carrusel de colecciones tipo círculos (brand strip PJMS) -->
+    <template id="s_pj_categories" name="PJMS Colecciones">
+        <t t-set="pj_website" t-value="request.env['website'].sudo().get_current_website()"/>
+        <t t-set="pj_cats" t-value="request.env['product.public.category'].sudo().search([('parent_id', '=', False), ('website_id', '=', pj_website.id)], order='sequence asc, name asc', limit=8)"/>
+        <section class="s_pj_categories pj-section" data-snippet="s_pj_categories">
+            <div class="pj-section-head">
+                <span class="pj-eyebrow is-accent">Nuestras Colecciones</span>
+                <h2 class="pj-section-title">Explora <em>el catálogo</em></h2>
+            </div>
+            <div class="pj-brand-strip">
+                <t t-foreach="pj_cats" t-as="cat">
+                    <a class="pj-brand-tile" t-att-href="'/shop?category=%s' % cat.id">
+                        <div class="pj-brand-tile-img">
+                            <img t-att-src="'/web/image/product.public.category/%s/image_1024' % cat.id"
+                                 t-att-alt="cat.name" loading="lazy"/>
+                        </div>
+                        <span class="pj-brand-tile-name" t-esc="cat.name"/>
+                    </a>
+                </t>
+            </div>
+        </section>
+    </template>
+</odoo>

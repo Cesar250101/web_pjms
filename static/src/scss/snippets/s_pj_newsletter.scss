@@ -1,0 +1,73 @@
+// PJMS Newsletter — fondo crema cálido, centrado
+.s_pj_newsletter {
+    background: var(--pj-surface-warm);
+    margin-top: 96px;
+    padding: 96px 32px;
+
+    @media (max-width: 700px) { padding: 64px 16px; }
+}
+
+.pj-nl-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pj-nl-title {
+    font-family: var(--pj-font-display);
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin: 14px 0 16px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--pj-ink);
+
+    em {
+        font-family: var(--pj-font-script);
+        font-style: normal;
+        text-transform: none;
+        color: var(--pj-accent);
+        letter-spacing: 0;
+    }
+}
+
+.pj-nl-sub {
+    font-family: var(--pj-font-body);
+    font-size: 15px;
+    color: var(--pj-ink-2);
+    margin: 0 auto 28px;
+    max-width: 480px;
+    line-height: 1.6;
+}
+
+.pj-nl-form { max-width: 480px; margin: 0 auto; }
+
+.pj-nl-row {
+    display: flex;
+    gap: 12px;
+
+    @media (max-width: 480px) { flex-direction: column; }
+}
+
+.pj-nl-input {
+    flex: 1;
+    border: 1px solid var(--pj-ink);
+    padding: 14px 18px;
+    background: transparent;
+    font-family: var(--pj-font-body);
+    font-size: 14px;
+    outline: none;
+    border-radius: 0;
+
+    &::placeholder { color: var(--pj-ink-4); }
+    &:focus { border-color: var(--pj-accent); }
+}
+
+.pj-nl-fine {
+    font-family: var(--pj-font-body);
+    font-size: 11px;
+    color: var(--pj-ink-3);
+    margin-top: 16px;
+    letter-spacing: 0.04em;
+}

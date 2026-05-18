@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_pj_trust_bar" name="PJMS Trust Bar (Pillars)">
+        <section class="s_pj_trust_bar" data-snippet="s_pj_trust_bar">
+            <div class="pj-pillars">
+                <div class="pj-pillar">
+                    <span class="material-symbols-outlined">local_shipping</span>
+                    <div>
+                        <strong>Envío Gratis</strong>
+                        <span>En compras sobre $50.000</span>
+                    </div>
+                </div>
+                <div class="pj-pillar">
+                    <span class="material-symbols-outlined">replay</span>
+                    <div>
+                        <strong>Cambios en Tienda</strong>
+                        <span>Sin preguntas, 30 días</span>
+                    </div>
+                </div>
+                <div class="pj-pillar">
+                    <span class="material-symbols-outlined">handmade</span>
+                    <div>
+                        <strong>Hecho a Mano</strong>
+                        <span>Confeccionado en Chile</span>
+                    </div>
+                </div>
+                <div class="pj-pillar">
+                    <span class="material-symbols-outlined">storefront</span>
+                    <div>
+                        <strong>Showroom &amp; Lab</strong>
+                        <span>CasaCostanera Nivel 3</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

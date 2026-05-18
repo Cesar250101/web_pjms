@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="pj_footer_override" inherit_id="website.footer_custom" name="PJMS Footer Override">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <t t-if="website and website.name == 'PJMS'">
+                <footer id="footer" class="pj-footer">
+                    <!-- Masthead wordmark -->
+                    <div class="pj-footer-masthead">
+                        <span class="pj-footer-wordmark">PJMS</span>
+                        <span class="pj-footer-tagline">homewear · sleepwear · funwear</span>
+                    </div>
+                    <!-- Footer grid -->
+                    <div class="pj-footer-grid">
+                        <div class="pj-footer-col">
+                            <h6 class="pj-footer-heading">Tienda</h6>
+                            <ul>
+                                <li><a href="/shop">Todos los Productos</a></li>
+                                <li><a href="/shop?order=newest">Novedades</a></li>
+                                <li><a href="/shop?order=price_asc">Ofertas</a></li>
+                            </ul>
+                        </div>
+                        <div class="pj-footer-col">
+                            <h6 class="pj-footer-heading">Ayuda</h6>
+                            <ul>
+                                <li><a href="/contacto-pjms">Contacto</a></li>
+                                <li><a href="#">Preguntas Frecuentes</a></li>
+                                <li><a href="#">Política de Cambios</a></li>
+                                <li><a href="/my">Mi Cuenta</a></li>
+                            </ul>
+                        </div>
+                        <div class="pj-footer-col">
+                            <h6 class="pj-footer-heading">Visítanos</h6>
+                            <p>CasaCostanera Nivel 3<br/>Santiago, Chile</p>
+                            <p>Lun – Sáb: 10:00 – 21:00</p>
+                        </div>
+                        <div class="pj-footer-col">
+                            <h6 class="pj-footer-heading">Síguenos</h6>
+                            <ul>
+                                <li><a href="https://instagram.com/pjms.cl" target="_blank">@pjms.cl · Instagram</a></li>
+                                <li><a href="mailto:hola@pjms.cl">hola@pjms.cl</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Bottom bar -->
+                    <div class="pj-footer-bottom">
+                        <span>© 2024 PJMS · Hecho con amor en Chile</span>
+                    </div>
+                </footer>
+            </t>
+            <t t-else="">
+                <div id="footer">
+                    <section>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-2 pt24 pb24">
+                                    <h5 class="mb-3">Useful Links</h5>
+                                    <ul class="list-unstyled">
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/contactus">Contact us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_pj_hero" name="PJMS Hero Editorial">
+        <section class="s_pj_hero pj-hero" data-snippet="s_pj_hero">
+            <!-- Fondo degradado con colores de la paleta PJMS -->
+            <div class="pj-hero-image"/>
+            <!-- Foto editorial placeholder -->
+            <div class="pj-hero-placeholder">
+                <span class="pj-placeholder-label">Foto Editorial · Verano '24</span>
+            </div>
+            <!-- Contenido central -->
+            <div class="pj-hero-overlay">
+                <div class="pj-hero-eyebrow">Estreno · CasaCostanera Nivel 3</div>
+                <h1 class="pj-hero-title">
+                    Verano
+                    <em>'24</em>
+                </h1>
+                <p class="pj-hero-sub">
+                    Una selección de pijamas hechos a mano en Chile.<br/>
+                    Algodón pima, viscosa y modal — para descansar bien.
+                </p>
+                <div class="pj-hero-ctas">
+                    <a href="/shop" class="pj-btn pj-btn-primary pj-btn-lg">Comprar la Colección</a>
+                    <a href="/shop" class="pj-btn pj-btn-ghost pj-btn-lg">Ver Lookbook</a>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

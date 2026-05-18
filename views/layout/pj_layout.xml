@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inyecta fuentes PJMS en el head -->
+    <template id="pj_google_fonts" inherit_id="website.layout" name="PJMS Fonts">
+        <xpath expr="//head" position="inside">
+            <t t-if="website and website.name == 'PJMS'">
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&amp;family=Sacramento&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&amp;display=swap"/>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Agrega .pj-body al wrapwrap cuando es el sitio PJMS -->
+    <template id="pj_body_class" inherit_id="website.layout" name="PJMS Body Class">
+        <xpath expr="//div[@id='wrapwrap']" position="attributes">
+            <attribute name="t-attf-class" add="#{'pj-body' if (website and website.name == 'PJMS') else ''}" separator=" "/>
+        </xpath>
+    </template>
+
+    <!-- Añade clase pj-odoo-header al header nativo cuando es PJMS -->
+    <template id="pj_header_inject" inherit_id="website.layout" name="PJMS Header Inject">
+        <xpath expr="//header[@id='top']" position="attributes">
+            <attribute name="t-attf-class">#{' pj-odoo-header' if (website and website.name == 'PJMS') else ''}</attribute>
+        </xpath>
+    </template>
+
+    <!-- Reemplaza el logo nativo con wordmark PJMS cuando aplica -->
+    <template id="pj_header_brand" inherit_id="website.option_header_brand_logo" name="PJMS Header Brand">
+        <xpath expr="//a[contains(@t-attf-class,'navbar-brand')]" position="replace">
+            <t t-if="website and website.name == 'PJMS'">
+                <a href="/pjms" class="navbar-brand pj-wordmark" aria-label="PJMS">
+                    <span class="pj-wordmark-sub">homewear · sleepwear · funwear</span>
+                </a>
+            </t>
+            <t t-else="">
+                <a href="/" t-attf-class="navbar-brand logo #{_link_class}">
+                    <span t-field="website.logo"
+                          t-options="{'widget': 'image', 'width': 95, 'height': 40}"
+                          role="img"
+                          t-att-aria-label="'Logo of %s' % website.name"
+                          t-att-title="website.name"/>
+                </a>
+            </t>
+        </xpath>
+    </template>
+</odoo>

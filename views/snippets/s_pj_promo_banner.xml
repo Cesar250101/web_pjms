@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Editorial split band: image left | dark copy column right -->
+    <template id="s_pj_promo_banner" name="PJMS Promo Banner Editorial">
+        <section class="s_pj_promo_banner" data-snippet="s_pj_promo_banner">
+            <div class="pj-promo-grid">
+                <div class="pj-promo-image">
+                    <div class="pj-promo-img-placeholder">
+                        <span class="pj-placeholder-label">Foto Editorial</span>
+                    </div>
+                </div>
+                <div class="pj-promo-copy">
+                    <span class="pj-eyebrow is-accent">Colección Especial</span>
+                    <h2 class="pj-promo-title">Dormir<br/><em>bien.</em></h2>
+                    <p class="pj-promo-body">
+                        Pijamas confeccionados a mano en Chile con telas de primera calidad.
+                        Algodón pima, viscosa y modal — para el descanso perfecto.
+                    </p>
+                    <a href="/shop" class="pj-btn pj-btn-primary">Ver Colección</a>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

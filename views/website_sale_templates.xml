@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- El override visual de website_sale para PJMS se aplica via SCSS
+         usando la clase .pj-body (ver static/src/scss/website_sale.scss).
+         No se modifican templates Odoo aquí para preservar funcionalidades. -->
+</odoo>

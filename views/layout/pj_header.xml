@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="pj_header" name="PJMS Header">
+        <t t-set="pj_website" t-value="request.env['website'].sudo().get_current_website()"/>
+        <t t-set="pj_categories" t-value="request.env['product.public.category'].sudo().search([('parent_id', '=', False), ('website_id', '=', pj_website.id)], order='sequence asc, name asc')"/>
+        <header class="pj-header">
+
+            <!-- Fila principal: iconos izq | wordmark centro | carrito der -->
+            <div class="pj-header-row">
+                <div class="pj-header-left">
+                    <button class="pj-iconbtn" aria-label="Menú">
+                        <span class="material-symbols-outlined" style="font-size:22px;">menu</span>
+                    </button>
+                    <button class="pj-iconbtn" aria-label="Buscar">
+                        <span class="material-symbols-outlined" style="font-size:22px;">search</span>
+                    </button>
+                </div>
+                <a href="/pjms" class="pj-wordmark" aria-label="PJMS">
+                    <span class="pj-wordmark-sub">homewear · sleepwear · funwear</span>
+                </a>
+                <div class="pj-header-right">
+                    <a href="/my" class="pj-link-meta">Mi cuenta</a>
+                    <a href="/wishlist" class="pj-iconbtn" aria-label="Lista de deseos">
+                        <span class="material-symbols-outlined" style="font-size:22px;">favorite</span>
+                    </a>
+                    <a href="/shop/cart" class="pj-cart-btn" aria-label="Carrito">
+                        <span class="material-symbols-outlined" style="font-size:18px;">shopping_bag</span>
+                        <span class="pj-cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navegación centrada con submenús desplegables -->
+            <nav class="pj-nav">
+                <a href="/pjms"
+                   t-att-class="'pj-nav-link is-active' if request.httprequest.path == '/pjms' else 'pj-nav-link'">
+                    Showroom
+                </a>
+                <a href="/shop"
+                   t-att-class="'pj-nav-link is-active' if request.httprequest.path.startswith('/shop') else 'pj-nav-link'">
+                    Colecciones
+                </a>
+                <t t-foreach="pj_categories" t-as="cat">
+                    <t t-set="pj_sub" t-value="request.env['product.public.category'].sudo().search([('parent_id', '=', cat.id)], order='sequence asc, name asc')"/>
+                    <div t-attf-class="pj-nav-item{% if pj_sub %} has-dropdown{% endif %}">
+                        <a t-att-href="'/coleccion/%s' % cat.id"
+                           t-att-class="'pj-nav-link is-active' if request.httprequest.path == '/coleccion/%s' % cat.id else 'pj-nav-link'"
+                           t-esc="cat.name"/>
+                        <div class="pj-dropdown" t-if="pj_sub">
+                            <t t-foreach="pj_sub" t-as="sub">
+                                <a class="pj-dropdown-item"
+                                   t-att-href="'/shop?category=%s' % sub.id"
+                                   t-esc="sub.name"/>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+                <a href="/contacto-pjms"
+                   t-att-class="'pj-nav-link is-active' if request.httprequest.path == '/contacto-pjms' else 'pj-nav-link'">
+                    Contacto
+                </a>
+            </nav>
+        </header>
+    </template>
+</odoo>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="pj_contacto_page" name="PJMS — Contacto" key="web_pjms.pj_contacto_page">
+        <t t-call="website.layout">
+            <div id="wrap" class="pj-site">
+                <main class="pj-contact-main oe_structure" id="oe_structure_pj_contacto">
+
+                    <!-- Hero -->
+                    <section class="pj-page-hero pj-contact-hero">
+                        <div class="pj-page-hero-content">
+                            <span class="pj-eyebrow is-accent">Estamos aquí</span>
+                            <h1 class="pj-cat-title">Contacto</h1>
+                        </div>
+                    </section>
+
+                    <!-- Cuerpo: formulario + info -->
+                    <section class="pj-contact-section">
+                        <div class="pj-contact-inner">
+
+                            <!-- Formulario usando website.form de Odoo -->
+                            <div class="pj-contact-form-wrap">
+                                <span class="pj-eyebrow">Envíanos un mensaje</span>
+                                <div class="s_website_form o_editable"
+                                     data-form-type="contact"
+                                     data-snippet="s_website_form">
+                                    <form action="/website/form/res.partner"
+                                          method="post"
+                                          enctype="multipart/form-data"
+                                          class="pj-contact-form">
+                                        <input type="hidden" name="contact_name" class="d-none" value="Contacto PJMS"/>
+                                        <div class="pj-form-row">
+                                            <div class="pj-field">
+                                                <label for="pj_name">Nombre completo</label>
+                                                <input id="pj_name" type="text" name="partner_name"
+                                                       placeholder="Tu nombre" required="required"/>
+                                            </div>
+                                            <div class="pj-field">
+                                                <label for="pj_email">Correo electrónico</label>
+                                                <input id="pj_email" type="email" name="email_from"
+                                                       placeholder="tu@correo.cl" required="required"/>
+                                            </div>
+                                        </div>
+                                        <div class="pj-form-row">
+                                            <div class="pj-field">
+                                                <label for="pj_phone">Teléfono</label>
+                                                <input id="pj_phone" type="tel" name="phone"
+                                                       placeholder="+56 9 XXXX XXXX"/>
+                                            </div>
+                                            <div class="pj-field">
+                                                <label for="pj_subject">Asunto</label>
+                                                <input id="pj_subject" type="text" name="subject"
+                                                       placeholder="¿En qué te podemos ayudar?"/>
+                                            </div>
+                                        </div>
+                                        <div class="pj-form-row full">
+                                            <div class="pj-field">
+                                                <label for="pj_message">Mensaje</label>
+                                                <textarea id="pj_message" name="description"
+                                                          rows="5" placeholder="Escribe tu mensaje aquí..."/>
+                                            </div>
+                                        </div>
+                                        <div class="pj-form-actions">
+                                            <button type="submit" class="pj-btn pj-btn-primary">
+                                                Enviar mensaje
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Info de contacto -->
+                            <div class="pj-contact-info">
+                                <span class="pj-eyebrow">Información</span>
+                                <div class="pj-info-item">
+                                    <span class="material-symbols-outlined">location_on</span>
+                                    <div>
+                                        <strong>Showroom</strong>
+                                        <p>CasaCostanera Nivel 3<br/>Santiago, Chile</p>
+                                    </div>
+                                </div>
+                                <div class="pj-info-item">
+                                    <span class="material-symbols-outlined">schedule</span>
+                                    <div>
+                                        <strong>Horario</strong>
+                                        <p>Lun – Sáb: 10:00 – 21:00</p>
+                                    </div>
+                                </div>
+                                <div class="pj-info-item">
+                                    <span class="material-symbols-outlined">mail</span>
+                                    <div>
+                                        <strong>Email</strong>
+                                        <a href="mailto:hola@pjms.cl">hola@pjms.cl</a>
+                                    </div>
+                                </div>
+                                <div class="pj-info-item">
+                                    <span class="material-symbols-outlined">photo_camera</span>
+                                    <div>
+                                        <strong>Instagram</strong>
+                                        <a href="https://instagram.com/pjms.cl" target="_blank">@pjms.cl</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                </main>
+            </div>
+        </t>
+    </template>
+
+    <!-- website.page se crea en post_init_hook para evitar que Odoo sobreescriba el key -->
+</odoo>

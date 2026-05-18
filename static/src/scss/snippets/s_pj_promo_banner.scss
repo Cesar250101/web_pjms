@@ -1,0 +1,75 @@
+// PJMS Editorial Split Band
+.s_pj_promo_banner { margin-top: 96px; }
+
+.pj-promo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+
+    @media (max-width: 1100px) { grid-template-columns: 1fr; }
+}
+
+.pj-promo-image {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--pj-brand-blush) 0%, var(--pj-brand-mist) 100%);
+    min-height: 400px;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+}
+
+.pj-promo-img-placeholder {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pj-promo-copy {
+    background: var(--pj-ink);
+    color: #fff;
+    padding: 96px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+
+    @media (max-width: 700px) { padding: 48px 24px; }
+
+    .pj-eyebrow { color: var(--pj-accent); }
+}
+
+.pj-promo-title {
+    font-family: var(--pj-font-display);
+    font-size: clamp(48px, 5vw, 88px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin: 0;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #fff;
+
+    em {
+        font-family: var(--pj-font-script);
+        font-size: 0.7em;
+        letter-spacing: 0;
+        text-transform: none;
+        color: var(--pj-accent);
+        display: inline-block;
+        font-style: normal;
+    }
+}
+
+.pj-promo-body {
+    font-family: var(--pj-font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.78);
+    margin: 0;
+    max-width: 440px;
+}
