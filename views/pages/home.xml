@@ -13,7 +13,6 @@
                     <t t-call="web_pjms.s_pj_sale"/>
                     <t t-call="web_pjms.s_pj_promo_banner"/>
                     <t t-call="web_pjms.s_pj_bestsellers"/>
-                    <t t-call="web_pjms.s_pj_brands"/>
                     <t t-call="web_pjms.s_pj_newsletter"/>
                 </main>
             </div>
