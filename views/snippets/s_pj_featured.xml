@@ -7,7 +7,7 @@
             <div class="pj-section-head">
                 <span class="pj-eyebrow is-accent">Lo Mejor de PJMS</span>
                 <h2 class="pj-section-title">Nuevos <em>ingresos</em></h2>
-                <a href="/shop" class="pj-section-link">Ver todos los productos</a>
+                <a href="/shop?ribbon_tipo=nuevo" class="pj-section-link">Ver todos los productos</a>
             </div>
             <div class="pj-grid">
                 <t t-foreach="pj_featured" t-as="prod">

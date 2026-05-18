@@ -1,6 +1,27 @@
 from odoo import http
 from odoo.http import request
 from odoo.addons.http_routing.models.ir_http import slug
+from odoo.addons.website_sale.controllers.main import WebsiteSale
+
+
+class WebsiteSalePjms(WebsiteSale):
+    """Override del shop para filtrar productos por ribbon_tipo via ?ribbon_tipo=<valor>."""
+
+    def _get_search_domain(self, search, category, attrib_values, search_in_description=True):
+        domain = super()._get_search_domain(search, category, attrib_values, search_in_description)
+        ribbon_tipo = request.httprequest.args.get('ribbon_tipo')
+        if ribbon_tipo:
+            domain += [('website_ribbon_id.tipo', '=', ribbon_tipo)]
+        return domain
+
+    def _shop_get_query_url_kwargs(self, category, search, min_price, max_price, attrib=None, order=None, **post):
+        kwargs = super()._shop_get_query_url_kwargs(
+            category, search, min_price, max_price, attrib=attrib, order=order, **post
+        )
+        ribbon_tipo = request.httprequest.args.get('ribbon_tipo')
+        if ribbon_tipo:
+            kwargs['ribbon_tipo'] = ribbon_tipo
+        return kwargs
 
 
 class PjmsSite(http.Controller):
