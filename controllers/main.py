@@ -7,6 +7,14 @@ from odoo.addons.website_sale.controllers.main import WebsiteSale
 class WebsiteSalePjms(WebsiteSale):
     """Override del shop para filtrar productos por ribbon_tipo via ?ribbon_tipo=<valor>."""
 
+    @http.route()
+    def shop(self, page=0, category=None, search='', min_price=0.0, max_price=0.0, ppg=False, **post):
+        """Necesario para que Odoo use esta clase como handler de /shop."""
+        return super().shop(
+            page=page, category=category, search=search,
+            min_price=min_price, max_price=max_price, ppg=ppg, **post,
+        )
+
     def _get_search_domain(self, search, category, attrib_values, search_in_description=True):
         domain = super()._get_search_domain(search, category, attrib_values, search_in_description)
         ribbon_tipo = request.httprequest.args.get('ribbon_tipo')
@@ -22,6 +30,11 @@ class WebsiteSalePjms(WebsiteSale):
         if ribbon_tipo:
             kwargs['ribbon_tipo'] = ribbon_tipo
         return kwargs
+
+    def _get_additional_extra_shop_values(self, values, **post):
+        extra = super()._get_additional_extra_shop_values(values, **post)
+        extra['ribbon_tipo'] = request.httprequest.args.get('ribbon_tipo', '')
+        return extra
 
 
 class PjmsSite(http.Controller):

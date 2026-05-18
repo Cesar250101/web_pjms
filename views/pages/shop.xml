@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!--
-        Filtra las categorías del bar horizontal de /shop para mostrar
-        SOLO las categorías que pertenecen al sitio web actual (website_id=11 PJMS).
-        Sin este override, Odoo también muestra categorías globales (website_id=False).
+        1. Filtra el bar horizontal de categorías para mostrar SOLO las del sitio web actual.
+        2. Muestra una etiqueta de filtro activo cuando se navega con ?ribbon_tipo=.
     -->
     <template id="pjms_filter_shop_categories"
               inherit_id="website_sale.products"
-              name="PJMS: Filtrar categorías de tienda por sitio web">
+              name="PJMS: Categorías por website + etiqueta de filtro activo">
         <xpath expr="//t[@t-if='opt_wsale_categories_top'][@t-call='website_sale.filmstrip_categories']"
                position="before">
+
+            <!-- Solo categorías del sitio web actual (descarta website_id=False globales) -->
             <t t-set="categories"
                t-value="categories.filtered(lambda c: c.website_id.id == request.website.id)"/>
+
+            <!-- Etiqueta visible cuando hay filtro ribbon_tipo activo -->
+            <t t-if="ribbon_tipo">
+                <div class="pj-active-filter d-inline-flex align-items-center gap-2 px-4 py-2 mb-3 rounded-pill"
+                     style="background:#f5ede8; border:1px solid #c8826a; color:#5c3a2a; font-size:.9rem;">
+                    <i class="fa fa-tag"/>
+                    <span>Filtrando por:</span>
+                    <strong t-if="ribbon_tipo == 'nuevo'">Nuevos Ingresos</strong>
+                    <strong t-elif="ribbon_tipo == 'en_descuento'">Ofertas — En Descuento</strong>
+                    <strong t-elif="ribbon_tipo == 'especial'">Colección Especial</strong>
+                    <strong t-elif="ribbon_tipo == 'mas_vendidos'">Más Vendidos</strong>
+                    <strong t-else="" t-out="ribbon_tipo"/>
+                    <a href="/shop"
+                       class="ms-3 btn btn-sm rounded-pill py-0 px-3"
+                       style="background:#c8826a; color:#fff; border:none;">
+                        ✕ Ver todo
+                    </a>
+                </div>
+            </t>
         </xpath>
     </template>
 </odoo>
