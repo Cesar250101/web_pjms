@@ -18,8 +18,11 @@
                     <t t-snippet="web_pjms.s_pj_categories" string="Categorías">
                         <keywords>categorias, grid, productos</keywords>
                     </t>
+                    <t t-snippet="web_pjms.s_pj_sale" string="Sale / Hasta 40%">
+                        <keywords>sale, oferta, descuento, hasta 40</keywords>
+                    </t>
                     <t t-snippet="web_pjms.s_pj_promo_banner" string="Banner Promocional">
-                        <keywords>promo, oferta, banner, descuento</keywords>
+                        <keywords>promo, oferta, banner, descuento, especial</keywords>
                     </t>
                     <t t-snippet="web_pjms.s_pj_bestsellers" string="Más Vendidos">
                         <keywords>bestsellers, mas vendidos, top</keywords>

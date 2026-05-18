@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="s_pj_bestsellers" name="PJMS Más Vendidos">
-        <t t-set="pj_bestsellers" t-value="request.env['product.template'].sudo().search([('website_published', '=', True), ('is_published', '=', True)], order='create_date desc', limit=4)"/>
+        <t t-set="pj_bestsellers" t-value="request.env['product.template'].sudo().search([('is_published', '=', True), ('website_id', '=', request.website.id), ('website_ribbon_id.tipo', '=', 'mas_vendidos')], order='create_date desc', limit=4)"/>
         <t t-set="pj_currency" t-value="request.env['res.currency'].sudo().search([('name','=','CLP')], limit=1) or request.env.company.currency_id"/>
         <section class="s_pj_bestsellers pj-section" data-snippet="s_pj_bestsellers">
             <div class="pj-section-head">

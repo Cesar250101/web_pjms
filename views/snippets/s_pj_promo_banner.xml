@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Editorial split band: image left | dark copy column right -->
+    <!-- Editorial split band: product image left | dark copy column right — Colección Especial -->
     <template id="s_pj_promo_banner" name="PJMS Promo Banner Editorial">
+        <t t-set="pj_especial" t-value="request.env['product.template'].sudo().search([('is_published', '=', True), ('website_id', '=', request.website.id), ('website_ribbon_id.tipo', '=', 'especial')], order='create_date desc', limit=1)"/>
+        <t t-set="pj_especial_ribbon" t-value="request.env['product.ribbon'].sudo().search([('tipo', '=', 'especial')], limit=1)"/>
+        <t t-set="pj_especial_url" t-value="'/shop?ribbon_id=%s' % pj_especial_ribbon.id if pj_especial_ribbon else '/shop'"/>
         <section class="s_pj_promo_banner" data-snippet="s_pj_promo_banner">
             <div class="pj-promo-grid">
                 <div class="pj-promo-image">
-                    <div class="pj-promo-img-placeholder">
-                        <span class="pj-placeholder-label">Foto Editorial</span>
-                    </div>
+                    <t t-if="pj_especial">
+                        <a t-att-href="'/shop/product/%s' % slug(pj_especial)">
+                            <img t-att-src="'/web/image/product.template/%s/image_1024' % pj_especial.id"
+                                 t-att-alt="pj_especial.name" loading="lazy"
+                                 style="width:100%;height:100%;object-fit:cover;"/>
+                        </a>
+                    </t>
+                    <t t-else="">
+                        <div class="pj-promo-img-placeholder">
+                            <span class="pj-placeholder-label">Foto Editorial</span>
+                        </div>
+                    </t>
                 </div>
                 <div class="pj-promo-copy">
                     <span class="pj-eyebrow is-accent">Colección Especial</span>
@@ -16,7 +28,7 @@
                         Pijamas confeccionados a mano en Chile con telas de primera calidad.
                         Algodón pima, viscosa y modal — para el descanso perfecto.
                     </p>
-                    <a href="/shop" class="pj-btn pj-btn-primary">Ver Colección</a>
+                    <a t-att-href="pj_especial_url" class="pj-btn pj-btn-primary">Ver Colección</a>
                 </div>
             </div>
         </section>

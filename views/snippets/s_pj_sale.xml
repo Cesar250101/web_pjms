@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_pj_sale" name="PJMS Sale Hasta 40%">
+        <t t-set="pj_sale" t-value="request.env['product.template'].sudo().search([('is_published', '=', True), ('website_id', '=', request.website.id), ('website_ribbon_id.tipo', '=', 'en_descuento')], order='create_date desc', limit=4)"/>
+        <t t-set="pj_sale_ribbon" t-value="request.env['product.ribbon'].sudo().search([('tipo', '=', 'en_descuento')], limit=1)"/>
+        <t t-set="pj_sale_url" t-value="'/shop?ribbon_id=%s' % pj_sale_ribbon.id if pj_sale_ribbon else '/shop'"/>
+        <section class="s_pj_sale" data-snippet="s_pj_sale">
+            <div class="pj-sale-inner">
+                <div class="pj-sale-copy">
+                    <span class="pj-sale-eyebrow">Sale</span>
+                    <h2 class="pj-sale-title">Hasta</h2>
+                    <div class="pj-sale-pct">40%</div>
+                    <p class="pj-sale-body">En productos seleccionados de la temporada.</p>
+                    <a t-att-href="pj_sale_url" class="pj-btn pj-btn-sale-ghost">Ver Ofertas</a>
+                </div>
+                <div class="pj-sale-grid">
+                    <t t-foreach="pj_sale" t-as="prod">
+                        <a class="pj-sale-card" t-att-href="'/shop/product/%s' % slug(prod)">
+                            <img t-att-src="'/web/image/product.template/%s/image_512' % prod.id"
+                                 t-att-alt="prod.name" loading="lazy"/>
+                        </a>
+                    </t>
+                    <t t-if="not pj_sale">
+                        <div class="pj-sale-card pj-sale-placeholder"/>
+                        <div class="pj-sale-card pj-sale-placeholder"/>
+                        <div class="pj-sale-card pj-sale-placeholder"/>
+                        <div class="pj-sale-card pj-sale-placeholder"/>
+                    </t>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

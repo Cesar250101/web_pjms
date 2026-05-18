@@ -10,6 +10,7 @@
                     <t t-call="web_pjms.s_pj_trust_bar"/>
                     <t t-call="web_pjms.s_pj_featured"/>
                     <t t-call="web_pjms.s_pj_categories"/>
+                    <t t-call="web_pjms.s_pj_sale"/>
                     <t t-call="web_pjms.s_pj_promo_banner"/>
                     <t t-call="web_pjms.s_pj_bestsellers"/>
                     <t t-call="web_pjms.s_pj_brands"/>
