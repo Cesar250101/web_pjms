@@ -14,6 +14,7 @@
         'security/ir.model.access.csv',
         'data/ribbon_data.xml',
         'data/website_data.xml',
+        'views/product_ribbon_views.xml',
         'views/layout/pj_layout.xml',
         'views/layout/pj_header.xml',
         'views/layout/pj_footer.xml',
