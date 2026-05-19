@@ -53,6 +53,7 @@
             'web_pjms/static/src/scss/snippets/s_pj_newsletter.scss',
             'web_pjms/static/src/scss/website_sale.scss',
             'web_pjms/static/src/js/snippets/s_pj_hero/000.js',
+            'web_pjms/static/src/js/snippets/s_pj_promo_banner/000.js',
         ],
     },
     'installable': True,

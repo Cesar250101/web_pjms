@@ -378,4 +378,54 @@
             a:hover { color: var(--pj-accent); }
         }
     }
+
+    // Reducir 40% el título "CONTACTO" solo en la página de contacto
+    .pj-contact-hero .pj-page-hero-content h1 {
+        font-size: clamp(29px, 4.8vw, 72px) !important;
+    }
+
+    .pj-contact-map-section {
+        padding: 0 32px 96px;
+
+        @media (max-width: 700px) { padding: 0 16px 64px; }
+
+        .pj-contact-map-inner {
+            max-width: var(--pj-container);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .pj-eyebrow { display: inline-block; margin-bottom: 12px; }
+
+        .pj-contact-map-title {
+            font-family: var(--pj-font-display);
+            font-size: clamp(28px, 3vw, 44px);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--pj-ink);
+            margin: 0 0 6px;
+            line-height: 1.1;
+        }
+
+        .pj-contact-map-address {
+            font-family: var(--pj-font-body);
+            font-size: 14px;
+            color: var(--pj-ink-2);
+            margin: 0 0 28px;
+        }
+
+        .pj-contact-map {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--pj-line);
+
+            iframe {
+                display: block;
+                width: 100%;
+                height: 420px;
+                border: 0;
+            }
+        }
+    }
 }

@@ -1,23 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Editorial split band: product image left | dark copy column right — Colección Especial -->
+    <!-- Editorial split band: product carousel left | dark copy column right — Colección Especial -->
     <template id="s_pj_promo_banner" name="PJMS Promo Banner Editorial">
-        <t t-set="pj_especial" t-value="request.env['product.template'].sudo().search(['&amp;', ('is_published', '=', True), ('website_ribbon_id.tipo', '=', 'especial'), '|', ('website_id', '=', request.website.id), ('website_id', '=', False)], order='create_date desc', limit=1)"/>
+        <t t-set="pj_website_id" t-value="request.env['website'].get_current_website().id"/>
+        <t t-set="pj_especiales" t-value="request.env['product.template'].sudo().search(['&amp;', ('is_published', '=', True), ('website_ribbon_id.tipo', '=', 'especial'), '|', ('website_id', '=', pj_website_id), ('website_id', '=', False)], order='create_date desc', limit=6)"/>
         <t t-set="pj_especial_url" t-value="'/shop?ribbon_tipo=especial'"/>
         <section class="s_pj_promo_banner" data-snippet="s_pj_promo_banner">
             <div class="pj-promo-grid">
                 <div class="pj-promo-image">
-                    <t t-if="pj_especial">
-                        <a t-att-href="'/shop/product/%s' % slug(pj_especial)">
-                            <img t-att-src="'/web/image/product.template/%s/image_1024' % pj_especial.id"
-                                 t-att-alt="pj_especial.name" loading="lazy"
-                                 style="width:100%;height:100%;object-fit:cover;"/>
-                        </a>
+                    <t t-if="pj_especiales">
+                        <div class="pj-promo-carousel">
+                            <div class="pj-promo-slides">
+                                <t t-foreach="pj_especiales" t-as="prod">
+                                    <a t-att-class="'pj-promo-slide active' if prod_first else 'pj-promo-slide'"
+                                       t-att-href="'/shop/product/%s' % slug(prod)">
+                                        <img t-att-src="'/web/image/product.template/%s/image_1024' % prod.id"
+                                             t-att-alt="prod.name" loading="lazy"/>
+                                    </a>
+                                </t>
+                            </div>
+                            <t t-if="len(pj_especiales) &gt; 1">
+                                <button type="button" class="pj-promo-arrow pj-promo-prev" data-promo-prev="" aria-label="Anterior">‹</button>
+                                <button type="button" class="pj-promo-arrow pj-promo-next" data-promo-next="" aria-label="Siguiente">›</button>
+                                <div class="pj-promo-dots">
+                                    <t t-foreach="pj_especiales" t-as="prod">
+                                        <button type="button"
+                                                t-att-class="'pj-promo-dot active' if prod_first else 'pj-promo-dot'"
+                                                t-att-data-promo-dot="prod_index"
+                                                t-att-aria-label="'Ir a slide %d' % (prod_index + 1)"/>
+                                    </t>
+                                </div>
+                            </t>
+                        </div>
                     </t>
                     <t t-else="">
-                        <div class="pj-promo-img-placeholder">
-                            <span class="pj-placeholder-label">Foto Editorial</span>
-                        </div>
+                        <a t-att-href="pj_especial_url">
+                            <img src="/web_pjms/static/src/img/promo-banner.jpg"
+                                 alt="Colección Especial PJMS" loading="lazy"
+                                 style="width:100%;height:100%;object-fit:cover;"/>
+                        </a>
                     </t>
                 </div>
                 <div class="pj-promo-copy">
