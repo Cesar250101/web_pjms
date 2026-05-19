@@ -8,7 +8,7 @@
             <div class="pj-section-head">
                 <span class="pj-eyebrow is-accent">Los Favoritos</span>
                 <h2 class="pj-section-title">Más <em>vendidos</em></h2>
-                <a href="/shop" class="pj-section-link">Ver todos los productos</a>
+                <a href="/shop?ribbon_tipo=mas_vendidos" class="pj-section-link">Ver todos los productos</a>
             </div>
             <div class="pj-grid">
                 <t t-foreach="pj_bestsellers" t-as="prod">

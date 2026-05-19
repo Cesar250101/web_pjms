@@ -16,11 +16,26 @@ class WebsiteSalePjms(WebsiteSale):
         )
 
     def _get_search_domain(self, search, category, attrib_values, search_in_description=True):
+        # Afecta el rango del slider de precios. El listado de productos se filtra en _shop_lookup_products.
         domain = super()._get_search_domain(search, category, attrib_values, search_in_description)
         ribbon_tipo = request.httprequest.args.get('ribbon_tipo')
         if ribbon_tipo:
             domain += [('website_ribbon_id.tipo', '=', ribbon_tipo)]
         return domain
+
+    def _shop_lookup_products(self, attrib_set, options, post, search, website):
+        fuzzy_search_term, product_count, search_result = super()._shop_lookup_products(
+            attrib_set, options, post, search, website,
+        )
+        ribbon_tipo = request.httprequest.args.get('ribbon_tipo')
+        if ribbon_tipo and search_result:
+            filtered_ids = request.env['product.template'].sudo()._search([
+                ('id', 'in', search_result.ids),
+                ('website_ribbon_id.tipo', '=', ribbon_tipo),
+            ])
+            search_result = request.env['product.template'].browse(filtered_ids).with_context(bin_size=True)
+            product_count = len(search_result)
+        return fuzzy_search_term, product_count, search_result
 
     def _shop_get_query_url_kwargs(self, category, search, min_price, max_price, attrib=None, order=None, **post):
         kwargs = super()._shop_get_query_url_kwargs(
